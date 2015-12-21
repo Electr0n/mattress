@@ -1,0 +1,14 @@
+<% current_workers.each_pair do |queue, number_of_workers| %>
+  <% number_of_workers.times do |worker_id| %>
+    <% pid = "#{current_path}/tmp/pids/resque_worker_#{queue}_#{worker_id + 1}.pid" %>
+
+check process resque_worker_<%= queue %>_<%= worker_id + 1 %>
+  with pidfile <%= pid %>
+  start program = "/bin/bash -c -l -i 'cd <%= current_path %> && NEWRELIC_ENABLE=false HOME=/home/<%= resque_user %> RAILS_ENV=<%= rails_env %> QUEUE=<%= queue %> PIDFILE=<%= pid %> BACKGROUND=yes VERBOSE=1 <%= fetch(:bundle_cmd, "bundle") %> exec rake resque:work >> <%= shared_path %>/log/resque.log 2>&1'" as uid <%= resque_user %> and gid <%= resque_group %> with timeout 180 seconds
+  stop program = "/bin/bash -c -l -i 'kill -9 $(cat <%= pid %>) && rm -f <%= pid %>; exit 0;'"
+  if totalmem is greater than 1500 MB for 10 cycles then alert  # eating up memory?
+  if 3 restarts within 5 cycles then alert
+  group resque_workers
+
+  <% end %>
+<% end %>

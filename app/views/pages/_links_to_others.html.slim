@@ -1,0 +1,8 @@
+-articles = PagePart.articles.other_than(@page)
+-if articles.any?
+  .art_links
+    h4 Другие статьи
+    ul
+      - articles.each do |article|
+        li
+          = link_to article.title, page_path(article)

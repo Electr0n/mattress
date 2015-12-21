@@ -1,0 +1,3 @@
+check process mmonit with pidfile <%= mmonit_pid %>
+  start program = "<%= mmonit_folder %>/bin/mmonit -d"
+  stop program = "<%= mmonit_folder %>/bin/mmonit stop"

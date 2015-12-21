@@ -1,0 +1,46 @@
+Mattress Shop
+========================
+
+Seting up the environment:
+bundle
+rake db:setup
+
+deploy
+cap deploy:migrations
+
+31.130.203.132
+root
+qf8a8t6fci
+
+mebelka
+m3b3lk@
+/home/mebelka/www/mebelka/current
+
+matraskin
+m@tr@sk1n
+/home/matraskin/www/matraskin/current
+
+mysql
+root
+qweASD
+
+________________________
+
+This application was generated with the rails_apps_composer gem:
+https://github.com/RailsApps/rails_apps_composer
+provided by the RailsApps Project:
+http://railsapps.github.com/
+
+________________________
+
+Recipes:
+["controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "setup", "testing", "views"]
+
+Preferences:
+{:git=>true, :railsapps=>"none", :dev_webserver=>"thin", :prod_webserver=>"thin", :database=>"sqlite", :templates=>"slim", :unit_test=>"rspec", :integration=>"capybara", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"none", :form_builder=>"simple_form", :starter_app=>"none", :ban_spiders=>true, :jsruntime=>true}
+
+________________________
+
+License
+
+

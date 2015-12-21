@@ -1,0 +1,4 @@
+check process private_pub with pidfile <%= private_pub_pid %>
+  start program = "/bin/bash -c -i -l 'cd <%= current_path %> && RAILS_ENV=<%= rails_env %> nohup <%= fetch(:bundle_cmd, "bundle") %> exec thin -C <%= current_path %>/config/private_pub_thin.yml start'" as uid <%= private_pub_user %> and gid <%= private_pub_group %>
+  stop program = "/bin/bash -c -l -i 'kill -9 $(cat <%= private_pub_pid %>) && rm -f <%= private_pub_pid %>; exit 0;'" as uid <%= private_pub_user %> and gid <%= private_pub_group %>
+  if failed host <%= private_pub_host %> port <%= private_pub_port %> <%= private_pub_ssl ? "type tcpssl protocol HTTP" : "protocol http" %> and request "<%= private_pub_path %>.js" then restart

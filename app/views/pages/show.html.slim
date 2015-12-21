@@ -1,0 +1,10 @@
+.article_holder
+  .breadcrumbs
+    = link_to 'Главная', root_path
+    |  > 
+  .article
+    .desc
+      == @page.content
+    .clear
+  = render 'links_to_others' unless @page.default?
+

@@ -1,0 +1,25 @@
+= link_to "Mattress Shop", root_path, :class => 'brand'
+ul.nav
+  - if user_signed_in?
+    /- if user_signed_in?
+    li
+      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    /- else
+      /li
+        /= link_to 'Login', new_user_session_path
+    /- if user_signed_in?
+    li
+      = link_to 'Edit account', edit_user_registration_path
+    /- else
+      /li
+        /= link_to 'Sign up', new_user_registration_path
+    li
+      a |
+    li
+      = link_to 'Matresses', admin_mattresses_path
+    li
+      = link_to 'Page parts', admin_page_parts_path
+    li
+      = link_to 'Manufacturers', admin_manufacturers_path
+    li
+      = link_to 'Product series', admin_product_series_index_path

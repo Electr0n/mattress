@@ -1,0 +1,21 @@
+= simple_nested_form_for [:admin, @mattress], :html => { :class => "form-horizontal" } do |f|
+  = f.input :title
+  = f.input :product_series_id, :as => :select, :collection => ProductSeries.includes(:manufacturer), :label_method => :name_with_manufacturer
+  = f.input :width
+  = f.input :height
+  = f.input :hardness
+  = f.input :short_description, :as => :ckeditor
+  = f.input :description, :as => :ckeditor
+  = f.input :price
+  = f.input :best_selled
+  - %w[image big_image].each do |image|
+    = image_fiels_for(f, image)
+  /= f.fields_for :price_for_sizes
+  /= f.link_to_add 'Add price', :price_for_sizes
+  - f.object.build_seo unless f.object.seo
+  = f.simple_fields_for :seo do |seo_f|
+    = render 'admin/seos/form', :f => seo_f
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_mattresses_path, :class => 'btn'

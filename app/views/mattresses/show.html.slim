@@ -1,0 +1,29 @@
+.catalog_section
+  = render 'catalog_menu'
+  .catalog
+    .bar
+      = render 'breadcrumbs'
+    .product_item
+      h3 = @mattress.title
+      .pic
+        .pic_holder
+          =image_tag @mattress.image.url(:processed)
+          span
+            = currency(@mattress.price)
+            em  бел.руб
+          - if @mattress.width? || @mattress.height?
+            .size
+              -if @spalni
+                h4 Сп. место (см):
+              -else
+                h4 Размер (см):
+              - if @mattress.width?
+                p Ширина #{@mattress.width}
+              - if @mattress.height?
+                p Длина #{@mattress.height}
+
+      .desc
+        == @mattress.description
+      .big_pic
+        = image_tag @mattress.big_image.url(:processed)
+  .clear

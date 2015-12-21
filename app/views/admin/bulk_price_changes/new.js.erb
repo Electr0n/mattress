@@ -1,0 +1,27 @@
+(function(){
+  var ids = $('#toggle_all_prices_link').closest('table').find('.toggable:checked').clone();
+  if (!ids.length) {
+    alert('No mattresses selected')
+  } else {
+    if (!$('#bulk_price_change_dialog').length) {
+      $('body').append($('<div>', {id: 'bulk_price_change_dialog'}));
+    }
+
+    var $dialog = $('#bulk_price_change_dialog');
+    $dialog.html('<%= j render 'bulk_price_change_dialog' %>');
+    $dialog.find('.ids_container').html('').append(ids);
+    $dialog.dialog({
+      autoOpen: true,
+      modal: true,
+      resizable: false,
+      height: 300,
+      width: 300,
+      position: ['middle', 'middle'],
+      title: "Bulk price change",
+      buttons: {
+        OK: function(){$(this).dialog().find('form').submit();},
+        Cancel: function(){$(this).dialog('close');}
+      }
+    });
+  }
+})();

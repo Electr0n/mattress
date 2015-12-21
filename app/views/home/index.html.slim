@@ -1,0 +1,23 @@
+we== PagePart[:banner]
+.hits
+  h2 Хиты продаж
+  section
+    - @best_selled.each do |item|
+      .item
+        .pic
+          = link_to image_tag(item.image.url(:processed)), item
+        .desc
+          -if item.manufacturer.present?
+            - pre = item.manufacturer.name.casecmp('Спальни') == 0 ? "" : "Матрас"
+            = link_to "#{pre} #{item.title}", item
+          p
+            = [("Ширина #{item.width}" if item.width.present?), ("длина #{item.height}" if item.height.present?)].compact.join(', ')
+            '
+            = item.hardness.presence
+          span
+            = currency(item.price)
+            em  бел.руб
+  .clear
+.article
+  == PagePart[:how_to].intro
+  .clear

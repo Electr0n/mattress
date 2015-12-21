@@ -1,0 +1,56 @@
+- model_class = Mattress
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human
+
+p
+  strong= model_class.human_attribute_name(:title) + ':'
+  br
+  = @mattress.title
+p
+  strong= model_class.human_attribute_name(:product_series) + ':'
+  br
+  = @mattress.product_series.try(:name_with_manufacturer)
+p
+  strong= model_class.human_attribute_name(:width) + ':'
+  br
+  = @mattress.width
+p
+  strong= model_class.human_attribute_name(:height) + ':'
+  br
+  = @mattress.height
+p
+  strong= model_class.human_attribute_name(:hardness) + ':'
+  br
+  = @mattress.hardness
+p
+  strong= model_class.human_attribute_name(:short_description) + ':'
+  br
+  == @mattress.short_description
+p
+  strong= model_class.human_attribute_name(:description) + ':'
+  br
+  == @mattress.description
+p
+  strong= model_class.human_attribute_name(:price) + ':'
+  br
+  = currency @mattress.price
+  |  бел. руб
+p
+  strong= model_class.human_attribute_name(:image) + ':'
+  br
+  = image_tag @mattress.image.url(:processed) if @mattress.image?
+p
+  strong= model_class.human_attribute_name(:big_image) + ':'
+  br
+  = image_tag @mattress.big_image.url(:processed) if @mattress.image?
+
+
+
+
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), admin_mattresses_path, :class => 'btn'
+  '
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_mattress_path(@mattress), :class => 'btn'
+  '
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), admin_mattress_path(@mattress), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

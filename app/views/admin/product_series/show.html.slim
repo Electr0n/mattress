@@ -1,0 +1,19 @@
+- model_class = ProductSeries
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human
+
+p
+  strong= model_class.human_attribute_name(:title) + ':'
+  br
+  = @product_series.title
+p
+  strong= model_class.human_attribute_name(:manufacturer_id) + ':'
+  br
+  = @product_series.manufacturer_id
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), admin_product_series_index_path, :class => 'btn'
+  '
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_product_series_path(@product_series), :class => 'btn'
+  '
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), admin_product_series_path(@product_series), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

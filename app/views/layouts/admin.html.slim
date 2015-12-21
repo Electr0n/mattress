@@ -1,0 +1,31 @@
+doctype html
+erb:
+  <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+  <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+  <!--[if (gt IE 8)|!(IE)]><!--> <html> <!--<![endif]-->
+head
+    title= content_for?(:title) ? yield(:title) : "Mattress Shop"
+    meta content=(content_for?(:description) ? yield(:description) : "Mattress Shop") name="description"
+      = stylesheet_link_tag("admin", :media => "all")
+      = javascript_include_tag "admin"
+      = csrf_meta_tags
+      = yield(:head)
+body
+  header.navbar.navbar-fixed-top
+    nav.navbar-inner
+      .container
+        = render 'layouts/navigation'
+  #main role="main"
+    .container
+      .content
+        .row
+          .span12
+            = render 'layouts/messages'
+            = yield
+        footer
+    /! ! end of .container
+  /! ! end of #main
+erb:
+  </html>

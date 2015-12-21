@@ -1,0 +1,13 @@
+.article_holder
+  .breadcrumbs
+    = link_to 'Главная', root_path
+    |  >
+  .article
+    .desc
+      h2 Полезные статьи
+      -if @articles.any?
+        ul style="margin: 0 0 20px 48px"
+          - @articles.each do |article|
+            li
+              = link_to article.title, page_path(article)
+    .clear

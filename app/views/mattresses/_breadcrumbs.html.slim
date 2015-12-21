@@ -1,0 +1,13 @@
+.breadcrumbs
+  = link_to 'Главная', root_path
+  |  > 
+  - if @current_manufacturer
+    =link_to @current_manufacturer.name, manufacturer_mattresses_path(@current_manufacturer)
+    |  > 
+    - if @current_product_series
+      = link_to "#{@spalni ? '': 'Матрасы'} #{@current_product_series.title}", product_series_mattresses_path(@current_product_series)
+      - if @mattress
+        |  > 
+        = link_to @mattress.title, mattress_path(@mattress)
+        |  > 
+  .clear

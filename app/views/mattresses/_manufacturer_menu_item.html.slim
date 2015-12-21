@@ -1,0 +1,6 @@
+li
+  = link_to_if (manufacturer_menu_item != @current_manufacturer) || @current_product_series, manufacturer_menu_item.name, manufacturer_mattresses_path(manufacturer_menu_item) do
+    p = manufacturer_menu_item.name
+  end
+  ul
+    =render :partial => 'product_series_menu_item', :collection => manufacturer_menu_item.product_serieses

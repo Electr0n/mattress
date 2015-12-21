@@ -1,0 +1,37 @@
+= simple_form_for :filter, :url => admin_mattresses_path, :method => :get do |f|
+  ul.toggable-container.mattresses-filter
+    li
+      =label_tag do
+        = check_box_tag '', '', false, :class => 'toggle_all_link'
+        | All
+      = hidden_field_tag 'filter[manufacturers][]'
+    - ::Manufacturer.includes(:product_serieses).find_each do |manufacturer|
+      li.toggable-container
+        = label_tag do
+          = check_box_tag 'filter[manufacturers][]',
+            manufacturer.id,
+            @filter[:manufacturers].include?(manufacturer.id),
+            :class => 'toggable manufacturer toggle_all_link',
+            :id => "filter_manufacturers_#{manufacturer.id}"
+          | #{manufacturer.name}:
+        ul.product-series-filter
+          li
+            /=label_tag do
+              /= check_box_tag '', '', false, :class => 'toggle_all_link'
+              /| All
+            = hidden_field_tag 'filter[product_serieses][]'
+          -manufacturer.product_serieses.each do |product_series|
+            li
+              = label_tag do
+                = check_box_tag "filter[product_serieses][]",
+                  product_series.id,
+                  @filter[:product_serieses].include?(product_series.id),
+                  :class => 'toggable',
+                  :id => "filter_manufacturers_#{manufacturer.id}_product_serieses_#{product_series.id}"
+                = product_series.title
+        div.clear
+
+  div.clear
+  = f.button :submit, 'Filter!'
+end
+

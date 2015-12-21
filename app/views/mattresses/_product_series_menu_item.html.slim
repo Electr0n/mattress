@@ -1,0 +1,5 @@
+li
+  - if product_series_menu_item == @current_product_series
+    p = product_series_menu_item.title
+  - else
+    = link_to product_series_menu_item.title, product_series_mattresses_path(product_series_menu_item)

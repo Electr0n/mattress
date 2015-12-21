@@ -1,0 +1,15 @@
+.catalog_section
+  = render 'catalog_menu'
+  .catalog
+    .bar
+      = render 'breadcrumbs'
+      .category
+        h2 = @current_product_series.try(:title) || @current_manufacturer.try(:name)
+      = paginate @mattresses
+      .clear
+
+    .section
+      = render :partial => 'mattress', :collection => @mattresses
+    = paginate @mattresses
+  .clear
+

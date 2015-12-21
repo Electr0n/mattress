@@ -1,0 +1,3 @@
+check process neo4j_service with pidfile <%= neo4j_pid %>
+  start program = "/etc/init.d/neo4j-service start" as uid neo4j and gid neo4j
+  stop program = "/etc/init.d/neo4j-service stop" as uid neo4j and gid neo4j

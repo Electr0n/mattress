@@ -1,0 +1,13 @@
+- if local_assigns[:mattress]
+       .item
+        .pic
+          = link_to image_tag(mattress.image.url(:processed)), mattress
+        .desc
+          = link_to "#{@spalni ? '' : 'Матрас'} #{mattress.title}", mattress
+          p
+            == mattress.short_description
+          span
+            = currency mattress.price
+            em  бел.руб
+
+        .clear

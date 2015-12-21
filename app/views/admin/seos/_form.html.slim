@@ -1,0 +1,6 @@
+h3 Seo fields:
+
+- [:title, :description, :keywords].each do |field|
+  = f.input field
+
+= f.input :slug unless f.object.persisted? && f.object.model_type.present? && f.object.model_id.blank?

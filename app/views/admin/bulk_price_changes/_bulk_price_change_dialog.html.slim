@@ -1,0 +1,5 @@
+= simple_form_for [:admin, @bulk_price_change], remote: true do |f|
+  div.ids_container.hidden  
+  =f.input :percents, as: :integer
+  =f.input :round_to, as: :integer
+end

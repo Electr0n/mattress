@@ -1,0 +1,33 @@
+- model_class = Mattress
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.pluralize
+  = render 'filters'
+  = link_to 'Change prices', new_admin_bulk_price_change_path, remote: true, class: 'btn'
+= link_to t('.new', :default => t("helpers.links.new")), new_admin_mattress_path, :class => 'btn btn-primary'
+table class="table table-striped toggable-container"
+  thead
+    tr
+      th= check_box_tag '', '', false, :class => 'toggle_all_link', :id => 'toggle_all_prices_link'
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:title)
+      th price
+      th= model_class.human_attribute_name(:description)
+      th= model_class.human_attribute_name(:created_at)
+      th.actions=t '.actions', :default => t("helpers.actions")
+  tbody
+    - @mattresses.each do |mattress|
+      tr
+        td= check_box_tag 'bulk_price_change[ids][]', mattress.id, false, id: "bulk_price_change_ids_#{mattress.id}", class: 'toggable'
+        td= link_to mattress.id, admin_mattress_path(mattress)
+        td= mattress.title
+        td= mattress.price
+        td== mattress.short_description
+        td=l mattress.created_at
+        td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_mattress_path(mattress), :class => 'btn btn-mini'
+          '
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), admin_mattress_path(mattress), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+
+= render 'admin/seos/full_form'
+

@@ -1,0 +1,3 @@
+= simple_form_for [:admin, @seo], remote: true, id: "seos_form_#{@seo.id}" do |f|
+  = render 'admin/seos/form', f: f
+  = f.button :submit

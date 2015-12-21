@@ -1,0 +1,12 @@
+= simple_form_for [:admin, @page_part], :html => { :class => "form-horizontal" } do |f|
+  /= f.input :key
+  = f.input :title
+  = f.input :intro, :as => :ckeditor
+  = f.input :content, :as => :ckeditor
+  - f.object.build_seo unless f.object.seo
+  = f.simple_fields_for :seo do |seo_f|
+    = render 'admin/seos/form', :f => seo_f
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_page_parts_path, :class => 'btn'
