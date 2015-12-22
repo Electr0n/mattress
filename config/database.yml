@@ -27,6 +27,6 @@ production:
   reconnect: false
   database: mattress_shop_production
   pool: 5
-  host: mariadb29943-env-5209085.mycloud.by
+  host: 
   username: root
-  password: QRArqh97338
+  password: 
